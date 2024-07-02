@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "youtubetogo"
+version = "0.1.3"
+description = "A script to download and convert YouTube videos to either video or audio format."
+readme = "README.md"
+requires-python = ">=3.6"
+license = {text = "MIT"}
+authors = [
+    { name="kdcllc", email="info@kingdavidconsulting.com" },
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "requests",
+    "pytube",
+    "python-dotenv",
+    "argparse"
+]
+
+[project.scripts]
+youtubetogo = "youtubetogo.main:main"
+
+[project.urls]
+Homepage = "https://github.com/kdcllc/youtubetogo"

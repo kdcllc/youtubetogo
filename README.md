@@ -12,15 +12,35 @@ sudo apt install ffmpeg
 
 2. If desired to download all of the videos from a specified channel then [**YouTube Data API v3**](https://console.cloud.google.com/apis/) key must be created.
 
+
 ## Installation
 
-You can install the package using pip:
+### Install from [pypi.org](https://pypi.org/project/youtubetogo/)
 
 ```bash
-pip install YouTubeToGo
+    pip install youtubetogo
+```
+
+### Project 
+
+You can install the package using pip from the source directory:
+
+``bash
+    git clone https://github.com/kdcllc/youtubetogo
+```
+```bash
+    pip install .
 ```
 
 ## Command Line Usage
+
+```bash
+    youtubetogo -u <video_url> [-a]
+
+    # YouTube Data API v3 api key is required
+    # store the key in .env file use .env.sample file
+    youtubetogo -c <channel_id> [-a]
+```
 
 ```bash
 python main.py -u <video_url> [-a]
@@ -36,10 +56,11 @@ python main.py -c <channel_id> [-a]
 ## Deploy
 
 ```bash
-    pip install setuptools wheel twine
+pip install build twine
 ```
 
 ```bash
-    python setup.py sdist bdist_wheel
+python -m build
+twine upload dist/*
 ```
 

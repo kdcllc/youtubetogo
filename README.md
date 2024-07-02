@@ -36,10 +36,11 @@ python main.py -c <channel_id> [-a]
 ## Deploy
 
 ```bash
-pip install build
+pip install build twine
 ```
 
 ```bash
 python -m build
+twine upload dist/*
 ```
 

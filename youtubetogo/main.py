@@ -167,6 +167,32 @@ async def download_videos_from_channel(csv_file_path, video_output_path):
 
     await asyncio.gather(*tasks)
 
+async def process_videos(args) :
+    download_type = 'audio' if args.audio else 'video'
+    conversion_command = 'ffmpeg -y -i "{input_path}" "{output_path}"'
+
+    if args.url:
+        video_url = args.url
+        id,video_output_path  = await download_video_from_url(video_url, '')
+        audio_output_path = f"audios-{id}"
+
+        if download_type == 'audio':
+            await convert_files(video_output_path, audio_output_path, '.mp4', '.mp3', conversion_command)
+    elif args.channel:
+        if not key:
+            raise ValueError("YouTube API key must be provided when a channel ID is specified.")
+        channel = args.channel
+        csv_file_path = f"{channel}.csv"
+        print("Please provide either a video URL or a channel ID.")
+        # check if the csv file exists
+        if not os.path.exists(csv_file_path):
+            create_csv_file(csv_file_path, key, channel)
+        video_output_path = f"videos-{channel}"
+        audio_output_path = f"audios-{channel}"
+        await download_videos_from_channel(csv_file_path,video_output_path)
+        if download_type == 'audio':
+            await convert_files(video_output_path, audio_output_path, '.mp4', '.mp3', conversion_command)
+
 def main():
     """
     Main function to parse arguments and initiate download and conversion.
@@ -177,10 +203,8 @@ def main():
     parser.add_argument('-c', '--channel', type=str, help="Channel ID to download and convert videos from")
     args = parser.parse_args()
 
-    if args.url:
-        asyncio.run(download_video_from_url(args.url))
-    elif args.channel:
-        asyncio.run(download_videos_from_channel(args.channel))
+    if args.url or args.channel:
+        asyncio.run(process_videos(args))
     else:
         print("Please provide a URL or Channel ID.")
 

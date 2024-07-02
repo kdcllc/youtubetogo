@@ -14,10 +14,10 @@ sudo apt install ffmpeg
 
 ## Installation
 
-You can install the package using pip:
+You can install the package using pip from the source directory:
 
 ```bash
-pip install youtubetogo
+pip install .
 ```
 
 ## Command Line Usage
@@ -36,10 +36,10 @@ python main.py -c <channel_id> [-a]
 ## Deploy
 
 ```bash
-    pip install setuptools wheel twine
+pip install build
 ```
 
 ```bash
-    python setup.py sdist bdist_wheel
+python -m build
 ```
 

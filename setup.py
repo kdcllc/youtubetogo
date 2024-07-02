@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='YouTubeToGo',
-    version='0.1.0',
+    name='youtubetogo',
+    version='0.1.1',
     packages=find_packages(),
     install_requires=[
         'requests',
@@ -12,7 +12,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'YouTubeToGo=main:main',
+            'youtubetogo=main:main',
         ],
     },
     author='kdcllc',
@@ -20,7 +20,7 @@ setup(
     description='A script to download and convert YouTube videos to either video or audio format.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/kdcllc/YouTubeToGo',
+    url='https://github.com/kdcllc/youtubetogo',
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',

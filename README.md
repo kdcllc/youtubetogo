@@ -17,7 +17,7 @@ sudo apt install ffmpeg
 You can install the package using pip:
 
 ```bash
-pip install YouTubeToGo
+pip install youtubetogo
 ```
 
 ## Command Line Usage
